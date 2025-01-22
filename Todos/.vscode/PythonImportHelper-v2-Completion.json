@@ -1,0 +1,387 @@
+[
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "status",
+        "importPath": "starlette",
+        "description": "starlette",
+        "isExtraImport": true,
+        "detail": "starlette",
+        "documentation": {}
+    },
+    {
+        "label": "status",
+        "importPath": "starlette",
+        "description": "starlette",
+        "isExtraImport": true,
+        "detail": "starlette",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Users",
+        "importPath": "Todos.models",
+        "description": "Todos.models",
+        "isExtraImport": true,
+        "detail": "Todos.models",
+        "documentation": {}
+    },
+    {
+        "label": "ToDos",
+        "importPath": "Todos.models",
+        "description": "Todos.models",
+        "isExtraImport": true,
+        "detail": "Todos.models",
+        "documentation": {}
+    },
+    {
+        "label": "db_dependency",
+        "importPath": "Todos.database",
+        "description": "Todos.database",
+        "isExtraImport": true,
+        "detail": "Todos.database",
+        "documentation": {}
+    },
+    {
+        "label": "db_dependency",
+        "importPath": "Todos.database",
+        "description": "Todos.database",
+        "isExtraImport": true,
+        "detail": "Todos.database",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "importPath": "Todos.database",
+        "description": "Todos.database",
+        "isExtraImport": true,
+        "detail": "Todos.database",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "Todos.database",
+        "description": "Todos.database",
+        "isExtraImport": true,
+        "detail": "Todos.database",
+        "documentation": {}
+    },
+    {
+        "label": "CryptContext",
+        "importPath": "passlib.context",
+        "description": "passlib.context",
+        "isExtraImport": true,
+        "detail": "passlib.context",
+        "documentation": {}
+    },
+    {
+        "label": "OAuth2PasswordRequestForm",
+        "importPath": "fastapi.security",
+        "description": "fastapi.security",
+        "isExtraImport": true,
+        "detail": "fastapi.security",
+        "documentation": {}
+    },
+    {
+        "label": "OAuth2PasswordBearer",
+        "importPath": "fastapi.security",
+        "description": "fastapi.security",
+        "isExtraImport": true,
+        "detail": "fastapi.security",
+        "documentation": {}
+    },
+    {
+        "label": "Annotated",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Annotated",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "jwt",
+        "importPath": "jose",
+        "description": "jose",
+        "isExtraImport": true,
+        "detail": "jose",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Column",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Integer",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Boolean",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "ForeignKey",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Session",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.ext.declarative",
+        "description": "sqlalchemy.ext.declarative",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.declarative",
+        "documentation": {}
+    },
+    {
+        "label": "auth",
+        "importPath": "Todos.router",
+        "description": "Todos.router",
+        "isExtraImport": true,
+        "detail": "Todos.router",
+        "documentation": {}
+    },
+    {
+        "label": "todo",
+        "importPath": "Todos.router",
+        "description": "Todos.router",
+        "isExtraImport": true,
+        "detail": "Todos.router",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "Todos",
+        "description": "Todos",
+        "isExtraImport": true,
+        "detail": "Todos",
+        "documentation": {}
+    },
+    {
+        "label": "Token",
+        "kind": 6,
+        "importPath": "router.auth",
+        "description": "router.auth",
+        "peekOfCode": "class Token(BaseModel):\n    access : str\n    token_type : str\nclass loginUserRequest(BaseModel):\n    email:str\n    password:str\nclass CreateUserRequest(BaseModel):\n    email : str\n    first_name : str\n    last_name : str",
+        "detail": "router.auth",
+        "documentation": {}
+    },
+    {
+        "label": "loginUserRequest",
+        "kind": 6,
+        "importPath": "router.auth",
+        "description": "router.auth",
+        "peekOfCode": "class loginUserRequest(BaseModel):\n    email:str\n    password:str\nclass CreateUserRequest(BaseModel):\n    email : str\n    first_name : str\n    last_name : str\n    password : str\n    role : str\ndef authenticate(email,password,db):",
+        "detail": "router.auth",
+        "documentation": {}
+    },
+    {
+        "label": "CreateUserRequest",
+        "kind": 6,
+        "importPath": "router.auth",
+        "description": "router.auth",
+        "peekOfCode": "class CreateUserRequest(BaseModel):\n    email : str\n    first_name : str\n    last_name : str\n    password : str\n    role : str\ndef authenticate(email,password,db):\n    user=db.query(Users).filter(Users.email==email).first()  \n    if not user:\n        return False",
+        "detail": "router.auth",
+        "documentation": {}
+    },
+    {
+        "label": "authenticate",
+        "kind": 2,
+        "importPath": "router.auth",
+        "description": "router.auth",
+        "peekOfCode": "def authenticate(email,password,db):\n    user=db.query(Users).filter(Users.email==email).first()  \n    if not user:\n        return False\n    if not bcrypt_context.verify(password,user.hashed_password):\n        return False\n    return user\ndef create_access_token(email:str,user_id:int,expires_delta:timedelta):\n    expires=datetime.utcnow()+expires_delta\n    encode={\"sub\":email,\"id\":user_id,\"exp\":expires}",
+        "detail": "router.auth",
+        "documentation": {}
+    },
+    {
+        "label": "create_access_token",
+        "kind": 2,
+        "importPath": "router.auth",
+        "description": "router.auth",
+        "peekOfCode": "def create_access_token(email:str,user_id:int,expires_delta:timedelta):\n    expires=datetime.utcnow()+expires_delta\n    encode={\"sub\":email,\"id\":user_id,\"exp\":expires}\n    return jwt.encode(encode,SECRET_KEY,algorithm=ALGORITHM)\n@router.get(\"/users\",status_code=status.HTTP_200_OK) \nasync def list_users(token:Annotated[str,Depends(oauth2_bearer)],db:db_dependency):\n    return db.query(Users).all()\n@router.post(\"/auth\",status_code=status.HTTP_201_CREATED)\nasync def create_user(db:db_dependency,request:CreateUserRequest):\n    user_model=Users(",
+        "detail": "router.auth",
+        "documentation": {}
+    },
+    {
+        "label": "ToDoRequest",
+        "kind": 6,
+        "importPath": "router.todo",
+        "description": "router.todo",
+        "peekOfCode": "class ToDoRequest(BaseModel):\n    title :str =Field(min_length=3)\n    description : str =Field(min_length=3,max_length=100)\n    priority : int = Field(gt=0,lt=6)\n    complete : bool \n#List all the ToDo \n@router.get(\"/todos\",status_code=status.HTTP_200_OK)\nasync def list_todos(db:db_dependency):\n    return db.query(ToDos).all()\n#Retrive Single ToDo from Table with todo_id",
+        "detail": "router.todo",
+        "documentation": {}
+    },
+    {
+        "label": "get_db",
+        "kind": 2,
+        "importPath": "database",
+        "description": "database",
+        "peekOfCode": "def get_db():\n    db=sessionLocal()\n    try:\n        yield db\n    finally:\n        db.close()\n#here this is the database dependency injection\ndb_dependency=Annotated[Session,Depends(get_db)]",
+        "detail": "database",
+        "documentation": {}
+    },
+    {
+        "label": "Users",
+        "kind": 6,
+        "importPath": "models",
+        "description": "models",
+        "peekOfCode": "class Users(Base):\n    __tablename__='users'\n    id=Column(Integer,primary_key=True,index=True)\n    email=Column(String,unique=True)\n    first_name=Column(String,max_length=100)\n    last_name=Column(String,max_length=100)\n    hashed_password=Column(String)\n    is_active=Column(Boolean,default=True)\n    role=Column(String)\nclass ToDos(Base):",
+        "detail": "models",
+        "documentation": {}
+    },
+    {
+        "label": "ToDos",
+        "kind": 6,
+        "importPath": "models",
+        "description": "models",
+        "peekOfCode": "class ToDos(Base):\n    __tablename__ = 'todos'\n    id=Column(Integer,primary_key=True,index=True)\n    title=Column(String)\n    description=Column(String)\n    priority=Column(Integer)\n    complete=Column(Boolean,default=False)\n    owner=Column(Integer,ForeignKey('users.id'))",
+        "detail": "models",
+        "documentation": {}
+    }
+]

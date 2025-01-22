@@ -1,20 +1,12 @@
-from fastapi import Depends,HTTPException,Path,APIRouter
+from fastapi import HTTPException,Path,APIRouter
 from pydantic import BaseModel, Field
-from sqlalchemy.orm import Session
 from Todos.models import ToDos
-from typing import Annotated
-from Todos.database import sessionLocal
 from starlette import status
-
+from Todos.database import db_dependency
 router=APIRouter()
 
 
-def get_db():
-    db=sessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+
         
         
 class ToDoRequest(BaseModel):
@@ -25,8 +17,7 @@ class ToDoRequest(BaseModel):
     
 
 
-#here this is the database dependency injection
-db_dependency=Annotated[Session,Depends(get_db)]
+
 
 #List all the ToDo 
 @router.get("/todos",status_code=status.HTTP_200_OK)
