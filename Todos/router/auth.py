@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from fastapi import APIRouter,Depends, HTTPException,Path
 from fastapi import APIRouter,Depends, HTTPException,Path
+from fastapi import APIRouter,Depends, HTTPException,Path
 from starlette import status
 from pydantic import BaseModel
 from Todos.models import Users
@@ -13,6 +14,7 @@ from jose import jwt,JWTError
 SECRET_KEY='98a5f275b7e2997a0b80f36c56f42200'
 ALGORITHM='HS256'
 EXP_TIME=timedelta(minutes=20)
+EXP_TIME=timedelta(minutes=20)
 bcrypt_context=CryptContext (schemes=['bcrypt'],deprecated='auto')
 oauth2_bearer=OAuth2PasswordBearer(tokenUrl='auth/token')
 
@@ -24,8 +26,13 @@ router=APIRouter(
 class Token(BaseModel):
     access_token : str
     refresh_token : str
+    access_token : str
+    refresh_token : str
     token_type : str
     
+class RefreshRequest(BaseModel):
+    refresh_token:str
+       
 class RefreshRequest(BaseModel):
     refresh_token:str
        
@@ -62,6 +69,9 @@ def create_access_token(email:str,user_id:int,expires_delta:timedelta,role:str):
 
 
 
+@router.get("/users",status_code=status.HTTP_200_OK) 
+async def list_users(token:Annotated[str,Depends(oauth2_bearer)],db:db_dependency):
+    return db.query(Users).all()
 @router.get("/users",status_code=status.HTTP_200_OK) 
 async def list_users(token:Annotated[str,Depends(oauth2_bearer)],db:db_dependency):
     return db.query(Users).all()
