@@ -79,3 +79,15 @@ def test_get_todo_invalid(test_todo):
     response=client.get('/todo/2')
     assert response.status_code==status.HTTP_404_NOT_FOUND
     assert response.json()=={'detail':"ToDo not found"}
+    
+    
+def test_create_todo():
+    request_data={
+        'title':"New Learn coding",
+        'description':"New learn coding everyday",
+        'priority':5,
+        'complete':False,
+    }
+    response=client.post('/todos',json=request_data)
+    assert response.status_code==201
+    

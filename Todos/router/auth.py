@@ -86,6 +86,20 @@ async def create_user(db:db_dependency,request:CreateUserRequest):
 async def login_for_access_token(form_data:Annotated[OAuth2PasswordRequestForm,Depends(loginUserRequest)],db:db_dependency):
     user=authenticate(form_data.email,form_data.password,db)
     if not user:
-        return "User Not authenticated"
-    token=create_access_token(user.email,user.id,timedelta(minutes=20))
+         raise HTTPException(status_code=401,detail="Unautherized")
+    token=create_access_token(user.email,user.id,timedelta(minutes=20),user.role)
     return {"access":token,"token_type":"beaer"}
+
+
+#this function return the current logined users email and user id
+async def current_user(token:Annotated[str,Depends(oauth2_bearer)]):
+    try:
+        payload=jwt.decode(token,SECRET_KEY,algorithms=ALGORITHM)
+        email=payload.get('sub')
+        id=payload.get('id')
+        role=payload.get('role')
+        if email is None or id is None:
+            raise HTTPException(status_code=401,detail="Unautherized")
+        return {"user_id":id,"email":email,"role":role}
+    except JWTError:
+        raise HTTPException(status_code=401,detail="Unautherized")
