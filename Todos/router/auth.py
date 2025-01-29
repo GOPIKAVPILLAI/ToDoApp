@@ -11,6 +11,7 @@ from jose import jwt,JWTError
 
 SECRET_KEY='98a5f275b7e2997a0b80f36c56f42200'
 ALGORITHM='HS256'
+EXP_TIME=timedelta(minutes=20)
 bcrypt_context=CryptContext (schemes=['bcrypt'],deprecated='auto')
 oauth2_bearer=OAuth2PasswordBearer(tokenUrl='auth/token')
 
@@ -20,10 +21,13 @@ router=APIRouter(
 )
 
 class Token(BaseModel):
-    access : str
+    access_token : str
+    refresh_token : str
     token_type : str
     
-    
+class RefreshRequest(BaseModel):
+    refresh_token:str
+       
 class loginUserRequest(BaseModel):
     email:str
     password:str
@@ -56,7 +60,9 @@ def create_access_token(email:str,user_id:int,expires_delta:timedelta,role:str):
     return jwt.encode(encode,SECRET_KEY,algorithm=ALGORITHM)
 
 
-
+def create_refresh_token(email:str,user_id:int,role:str):
+    encode={"sub":email,"id":user_id,"role":role}
+    return jwt.encode(encode,SECRET_KEY,algorithm=ALGORITHM)
     
     
 #user registration
@@ -80,8 +86,9 @@ async def login_for_access_token(form_data:Annotated[OAuth2PasswordRequestForm,D
     user=authenticate(form_data.email,form_data.password,db)
     if not user:
         raise HTTPException(status_code=401,detail="Unautherized")
-    token=create_access_token(user.email,user.id,timedelta(minutes=20),user.role)
-    return {"access":token,"token_type":"beaer"}
+    access_token=create_access_token(user.email,user.id,EXP_TIME,user.role)
+    refresh_token=create_refresh_token(user.email,user.id,user.role)
+    return {"access_token":access_token,"refresh_token":refresh_token,"token_type":"beaer"}
 
 
 #this function return the current logined users email and user id
@@ -97,3 +104,9 @@ async def current_user(token:Annotated[str,Depends(oauth2_bearer)]):
     except JWTError:
         raise HTTPException(status_code=401,detail="Unautherized")
     
+@router.post("/refresh",status_code=status.HTTP_201_CREATED)
+async def refresh_access_token(refresh_token:RefreshRequest):
+    payload=jwt.decode(refresh_token.refresh_token,SECRET_KEY,algorithms=ALGORITHM)
+    if payload.get("sub") is None or payload.get("id") is None:
+        raise HTTPException(status_code=401,detail="Unautherized")
+    return {"access_token":create_access_token(payload.get('sub'),payload.get('id'),EXP_TIME,payload.get('role'))}
