@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from fastapi import APIRouter,Depends, HTTPException,Path
+from fastapi import APIRouter,Depends, HTTPException,Path
 from starlette import status
 from pydantic import BaseModel
 from Todos.models import Users
@@ -60,10 +61,10 @@ def create_access_token(email:str,user_id:int,expires_delta:timedelta,role:str):
     return jwt.encode(encode,SECRET_KEY,algorithm=ALGORITHM)
 
 
-def create_refresh_token(email:str,user_id:int,role:str):
-    encode={"sub":email,"id":user_id,"role":role}
-    return jwt.encode(encode,SECRET_KEY,algorithm=ALGORITHM)
-    
+
+@router.get("/users",status_code=status.HTTP_200_OK) 
+async def list_users(token:Annotated[str,Depends(oauth2_bearer)],db:db_dependency):
+    return db.query(Users).all()
     
 #user registration
 @router.post("/register",status_code=status.HTTP_201_CREATED)
@@ -85,28 +86,6 @@ async def create_user(db:db_dependency,request:CreateUserRequest):
 async def login_for_access_token(form_data:Annotated[OAuth2PasswordRequestForm,Depends(loginUserRequest)],db:db_dependency):
     user=authenticate(form_data.email,form_data.password,db)
     if not user:
-        raise HTTPException(status_code=401,detail="Unautherized")
-    access_token=create_access_token(user.email,user.id,EXP_TIME,user.role)
-    refresh_token=create_refresh_token(user.email,user.id,user.role)
-    return {"access_token":access_token,"refresh_token":refresh_token,"token_type":"beaer"}
-
-
-#this function return the current logined users email and user id
-async def current_user(token:Annotated[str,Depends(oauth2_bearer)]):
-    try:
-        payload=jwt.decode(token,SECRET_KEY,algorithms=ALGORITHM)
-        email=payload.get('sub')
-        id=payload.get('id')
-        role=payload.get('role')
-        if email is None or id is None:
-            raise HTTPException(status_code=401,detail="Unautherized")
-        return {"user_id":id,"email":email,"role":role}
-    except JWTError:
-        raise HTTPException(status_code=401,detail="Unautherized")
-    
-@router.post("/refresh",status_code=status.HTTP_201_CREATED)
-async def refresh_access_token(refresh_token:RefreshRequest):
-    payload=jwt.decode(refresh_token.refresh_token,SECRET_KEY,algorithms=ALGORITHM)
-    if payload.get("sub") is None or payload.get("id") is None:
-        raise HTTPException(status_code=401,detail="Unautherized")
-    return {"access_token":create_access_token(payload.get('sub'),payload.get('id'),EXP_TIME,payload.get('role'))}
+        return "User Not authenticated"
+    token=create_access_token(user.email,user.id,timedelta(minutes=20))
+    return {"access":token,"token_type":"beaer"}
