@@ -1,55 +1,9 @@
-from Todos.database import get_db
-from Todos.router.auth import current_user
-from sqlalchemy import create_engine,text
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.pool import StaticPool
-from Todos.database import Base
-from Todos.main import app
-from fastapi.testclient import TestClient
+
 from fastapi import status
-import pytest
+from Todos.test.utils import client,TestsessionLocal,test_todo
 from Todos.models import ToDos
 
-SQLALCHEMY_DATABASE_URL="sqlite:///./test.db"
 
-engine=create_engine(SQLALCHEMY_DATABASE_URL,connect_args={'check_same_thread':False},poolclass=StaticPool)
-
-TestsessionLocal=sessionmaker(autocommit=False,autoflush=False,bind=engine)
-
-Base.metadata.create_all(bind=engine)
-
-
-def override_get_db():
-    db=TestsessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-    
-def override_get_current_user():
-    return {"user_id":1,"email":"test@gmail.com","role":"admin"}
-
-app.dependency_overrides[get_db]=override_get_db    
-app.dependency_overrides[current_user]=override_get_current_user
-
-client=TestClient(app)
-
-@pytest.fixture
-def test_todo():
-    todo=ToDos(
-        title="Learn coding",
-        description="learn coding everyday",
-        priority=5,
-        complete=False,
-        owner=1
-    )
-    db=TestsessionLocal()
-    db.add(todo)
-    db.commit()
-    yield todo
-    with engine.connect() as connection:
-        connection.execute(text("DELETE FROM todos;"))
-        connection.commit()
 
 def test_list_todo(test_todo):
     response=client.get('/todos')
@@ -81,7 +35,7 @@ def test_get_todo_invalid(test_todo):
     assert response.json()=={'detail':"ToDo not found"}
     
     
-def test_create_todo():
+def test_create_todo(test_todo):
     request_data={
         'title':"New Learn coding",
         'description':"New learn coding everyday",
@@ -90,4 +44,51 @@ def test_create_todo():
     }
     response=client.post('/todos',json=request_data)
     assert response.status_code==201
+    db=TestsessionLocal()
+    model=db.query(ToDos).filter(ToDos.id==2).first()
+    assert model.title=="New Learn coding"
+    assert model.description=="New learn coding everyday"
+    assert model.priority==5
+    assert model.complete==False
+    assert model.owner==1
     
+def test_update_todo(test_todo):
+    request_data={
+        'title':"Updated Learn coding",
+        'description':"Updated learn coding everyday",
+        'priority':5,
+        'complete':False,
+    }
+    response=client.put('/todo/1',json=request_data)
+    assert response.status_code==204
+    db=TestsessionLocal()
+    model=db.query(ToDos).filter(ToDos.id==1).first()
+    assert model.title=="Updated Learn coding"
+    assert model.description=="Updated learn coding everyday"
+    assert model.priority==5
+    assert model.complete==False
+    assert model.owner==1
+
+def test_update_todo_invalid(test_todo):
+    request_data={
+        'title':"Updated Learn coding",
+        'description':"Updated learn coding everyday",
+        'priority':5,
+        'complete':False,
+    }
+    response=client.put('/todo/999',json=request_data)
+    assert response.status_code==404
+    assert response.json()=={'detail':"ToDo not found"}
+     
+def test_delete_todo(test_todo):
+    response=client.delete('/todo/1')
+    assert response.status_code==204
+    db=TestsessionLocal()
+    model=db.query(ToDos).all()
+    assert model==[]
+    
+    
+def test_delete_todo_invalid(test_todo):
+    response=client.delete('/todo/999')
+    assert response.status_code==404
+    assert response.json()== {'detail': 'Todos not found'}

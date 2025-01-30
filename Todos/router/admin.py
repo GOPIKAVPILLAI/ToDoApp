@@ -27,7 +27,7 @@ async def get_todo(user:user_dependency,db:db_dependency,todo_id:int=Path(gt=0))
 
 
     
-@router.delete("/delete/{user_id}")
+@router.delete("/delete/{user_id}",status_code=status.HTTP_204_NO_CONTENT)
 async def delete_user(user:user_dependency,db:db_dependency,user_id:int=Path(gt=0)):
     if user is None or user.get("role")!="admin":
         raise HTTPException(status_code=401,detail="Autentication Failed")
